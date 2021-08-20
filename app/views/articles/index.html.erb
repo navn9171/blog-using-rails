@@ -1,0 +1,28 @@
+<% count = 1 %>
+<div class="container py-3">
+    <div class="bg-dark rounded-3">
+        <div class="container-fluid py-5">
+            <h1 class="display-5 fw-bold text-center text-white">Welcome</h1>
+            <p class=" text-center text-white">You will find here a variety of blogs.</p>
+            <div class="text-center">
+                <%= link_to "Create Blog", new_article_path, class:"btn btn-primary btn-lg" %>
+            </div>
+        </div>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4 py-3">
+        <% @articles.each do |article| %>
+            <div class="col">
+                <div class="card border-success mb-3" >
+                    <div class="card-header bg-transparent border-success">Blog <%= count %></div>
+                        <div class="card-body text-success">
+                            <h5 class="card-title text-center"><%= link_to article.title, article_path(article) %></h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        </div>
+                    <div class="card-footer bg-transparent border-success">Created by <%= article.user.email %> on: <%= article.created_at.strftime("%Y-%m-%d") %></div>
+                </div>
+            </div>
+            <% count = count + 1 %>
+        <% end %>
+    </div>
+</div>
